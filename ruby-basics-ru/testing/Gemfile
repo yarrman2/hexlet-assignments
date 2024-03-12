@@ -2,5 +2,6 @@
 
 source 'https://rubygems.org'
 # BEGIN
+gem 'minitest', '~>5.22'
 gem 'minitest-power_assert'
 # END
