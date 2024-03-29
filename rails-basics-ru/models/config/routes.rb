@@ -2,8 +2,8 @@
 
 Rails.application.routes.draw do
   root 'home#index'
-  get '/articles', to: 'articles#index'
-  get '/articles/:id', to: 'articles#show'
+  # get '/articles', to: 'articles#index'
+  # get '/articles/:id', to: 'articles#show'
 
-  resource :articles, only: :show
+  resources :articles, only: [:index, :show]
 end
