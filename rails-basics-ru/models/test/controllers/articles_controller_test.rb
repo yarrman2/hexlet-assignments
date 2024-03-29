@@ -14,7 +14,6 @@ class ArticlesTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show article' do
-    binding.irb
     get article_url @article
 
     assert_response :success

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Create App
 # rails new example_app --minimal --api --skip-git
 cd example_app
@@ -59,7 +61,7 @@ user.errors.full_messages
 #   "Email has already been taken",
 #   "Email is invalid"]
 
-user = User.new(first_name: 'John', last_name: 'Doe', role: 'customer', age: 25, email: 'johndoe@email.com')
+User.new(first_name: 'John', last_name: 'Doe', role: 'customer', age: 25, email: 'johndoe@email.com')
 user = User.new(first_name: 'Ivan', last_name: 'Doe', role: 'customer', age: 25, email: 'johndoe@email.com')
 
 user.update_column(:first_name, 'John')
@@ -74,9 +76,9 @@ attribute :is_active, :boolean, default: -> { false }
   User.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    email: Faker:: Internet.email,
+    email: Faker::Internet.email,
     age: (18..100).to_a.sample,
-    role: %w( customer admin superuser ).sample,
+    role: %w[customer admin superuser].sample,
     is_active: [true, false].sample
   )
 end
@@ -89,7 +91,7 @@ scope :customers, -> { where(role: 'customer') }
 scope :admins, -> { where(role: 'admin') }
 scope :superusers, -> { where(role: 'superuser') }
 scope :old_admins, -> { admins.where('age > ?', 60) }
-scope :admins_older_than, -> (age) { admins.where('age > ?', age) }
+scope :admins_older_than, ->(age) { admins.where('age > ?', age) }
 
 default_scope { admins }
 
@@ -108,4 +110,4 @@ User.limit(15)
 User.limit(15).offset(30)
 User.group(:age).count
 User.none
-User.customers.where("age > ?", 45).select(:email)
+User.customers.where('age > ?', 45).select(:email)

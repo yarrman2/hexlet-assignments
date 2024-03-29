@@ -8,7 +8,6 @@ class ArticlesTest < ActionDispatch::IntegrationTest
   end
 
   test 'visiting the index' do
-    p "-" * 10, @article
     get articles_url
     assert_select 'h1', text: 'Articles'
     assert_select 'li a', @article.title

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   validates :first_name, presence: true
-  validates_inclusion_of :role, in: %w( customer admin superuser )
+  validates_inclusion_of :role, in: %w[customer admin superuser]
   validates_length_of :last_name, maximum: 15, message: "less than 15 if you don't mind"
   validates :age, numericality: { only_integer: true, greater_than: 17 }
   validates :email, uniqueness: true
@@ -10,7 +12,7 @@ class User < ApplicationRecord
   attribute :is_active, :boolean, default: -> { false }
 
   def custom_validation
-    errors.add :first_name, 'You are not welcome here, John'  if first_name == 'John'
+    errors.add :first_name, 'You are not welcome here, John' if first_name == 'John'
   end
 
   # scope :admins, -> {where(role: 'admin') }
@@ -23,7 +25,7 @@ class User < ApplicationRecord
   scope :admins, -> { where(role: 'admin') }
   scope :superusers, -> { where(role: 'superuser') }
   scope :old_admins, -> { admins.where('age > ?', 60) }
-  scope :admins_older_than, -> (age) { admins.where('age > ?', age) }
+  scope :admins_older_than, ->(age) { admins.where('age > ?', age) }
 
   # default_scope { admins }
 end

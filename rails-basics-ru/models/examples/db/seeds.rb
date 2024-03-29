@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # db/seeds.rb
 User.create(first_name: 'John', last_name: 'Doe', role: 'admin')
 User.create(first_name: 'John', last_name: 'Smith', role: 'customer')

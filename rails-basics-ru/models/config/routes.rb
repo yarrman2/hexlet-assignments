@@ -6,5 +6,4 @@ Rails.application.routes.draw do
   get '/articles/:id', to: 'articles#show'
 
   resource :articles, only: :show
-
 end
